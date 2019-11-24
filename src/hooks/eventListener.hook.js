@@ -9,12 +9,10 @@ export function useEventListener(eventName, handler, element = window) {
 
   useEffect(
     () => {
-      const eventListener = (...args) => savedHandler.current(...args);
-
-      element.addEventListener(eventName, eventListener);
+      element.addEventListener(eventName, savedHandler.current);
 
       return () => {
-        element.removeEventListener(eventName, eventListener);
+        element.removeEventListener(eventName, savedHandler.current);
       };
     },
     [eventName, element] // Re-run if eventName or element changes
