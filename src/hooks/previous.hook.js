@@ -1,3 +1,11 @@
+import { useRef, useEffect } from "react";
+
 export const usePrevious = value => {
-  // TBD return the value from the previous render
+  const previousRef = useRef();
+
+  useEffect(() => {
+    previousRef.current = value;
+  });
+
+  return previousRef.current;
 };
