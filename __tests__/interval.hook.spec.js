@@ -1,11 +1,10 @@
 import { renderHook } from "@testing-library/react-hooks";
 import { useInterval } from "../src/hooks/interval.hooks";
 
-// Better use jest.useFakeTimers, but doesn't work in CodeSandbox
+jest.useFakeTimers();
 const wait = delay =>
-  new Promise(resolve => {
-    setTimeout(resolve, delay);
-  });
+  jest.advanceTimersByTime(delay);
+
 
 test("interval", async () => {
   const mockCallback = jest.fn(() => console.log("mocked"));
